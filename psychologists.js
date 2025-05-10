@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
     // Инициализируем клиент Supabase — замените значения на актуальные для вашего проекта
     const supabaseUrl = 'https://ibqxsviroqbwriqqflyi.supabase.co';
     const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlicXhzdmlyb3Fid3JpcXFmbHlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NzI2NzgsImV4cCI6MjA2MjM0ODY3OH0.UniqEpeGFYn0uOSX4eq9Gqi54NxStLJ6bdniHzLSudo';
+
+    // Создаем клиента Supabase без переопределения Authorization
     const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
     // Пагинация: загружаем несколько карточек за раз
@@ -12,7 +14,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Функция для загрузки карточек с психологами
     async function loadPsychologists() {
-        let { data, error } = await supabaseClient
+        console.log("Запрошены психологи с offset:", offset);
+        const { data, error } = await supabaseClient
             .from('psychologists')
             .select('*')
             .range(offset, offset + limit - 1);
@@ -21,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error("Ошибка получения психологов:", error);
             return;
         }
+        console.log("Получены данные:", data);
         if (data && data.length > 0) {
             data.forEach(psy => {
                 const card = document.createElement('div');
@@ -70,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
         detailModal.style.display = 'none';
     });
 
-    // Функционал модального окна для записи на приём
+    // Функционал модального окна для записи на прием
     const appointmentModal = document.getElementById('appointment-modal');
     const appointmentClose = document.getElementById('appointment-close');
 
@@ -106,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Обработка отправки формы записи на приём
+    // Обработка отправки формы записи на прием
     const appointmentForm = document.getElementById('appointment-form');
     appointmentForm.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -133,7 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (error) {
             console.error("Ошибка создания записи:", error);
-
             alert("Не удалось создать запись. Попробуйте ещё раз.");
             return;
         }

@@ -3,9 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Личный кабинет</title>
-    <meta name="viewport" content="width=device-width">
-    <!-- Подключаем UMD-версию библиотеки Supabase -->
-    <script src="./node_modules/@supabase/supabase-js/dist/umd/supabase.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Подключаем библиотеку Supabase через CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js" defer></script>
+
+    <!-- Подключаем jsrsasign для работы с JWT -->
+    <script src="https://cdn.jsdelivr.net/npm/jsrsasign@10.6.0/lib/jsrsasign-all-min.js" defer></script>
 </head>
 <body>
 <header>
@@ -27,13 +31,15 @@
         </div>
     </section>
 </main>
-<script>
-    // Инициализация клиента Supabase
-    const supabaseUrl = 'https://ibqxsviroqbwriqqflyi.supabase.co';
-    const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlicXhzdmlyb3Fid3JpcXFmbHlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NzI2NzgsImV4cCI6MjA2MjM0ODY3OH0.UniqEpeGFYn0uOSX4eq9Gqi54NxStLJ6bdniHzLSudo';
-    const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-    document.addEventListener("DOMContentLoaded", async function() {
+<!-- Inline-скрипт, обернутый в DOMContentLoaded для гарантии загрузки всех defer-скриптов -->
+<script>
+    window.addEventListener("DOMContentLoaded", async function() {
+        // Инициализация клиента Supabase
+        const supabaseUrl = 'https://ibqxsviroqbwriqqflyi.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlicXhzdmlyb3Fid3JpcXFmbHlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NzI2NzgsImV4cCI6MjA2MjM0ODY3OH0.UniqEpeGFYn0uOSX4eq9Gqi54NxStLJ6bdniHzLSudo';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
         // Получаем данные пользователя из localStorage
         const token = localStorage.getItem("token");
         const userId = localStorage.getItem("user_id");
@@ -45,14 +51,14 @@
             return;
         }
 
-        // Если на этапе авторизации вы сохранили дополнительные данные (например, decoded объект),
-        // их можно получить из localStorage. Здесь для простоты проверяем наличие поля "login".
+        // Если на этапе авторизации вы сохраняли дополнительные данные (например, decoded объект),
+        // их можно получить из localStorage. Здесь для простоты проверяем наличие поля "login"
         const decoded = JSON.parse(localStorage.getItem("user_info") || '{"login": "Пользователь"}');
         username = decoded.login || "Пользователь";
         document.getElementById("welcome-message").textContent = "Добро пожаловать, " + username;
 
         // Получаем записи пользователя из таблицы appointments
-        const { data, error } = await supabase
+        const { data, error } = await supabaseClient
             .from('appointments')
             .select('*')
             .eq('user_id', userId);

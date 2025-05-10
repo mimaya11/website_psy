@@ -11,5 +11,6 @@
     <orderEntry type="library" name="jsonwebtoken" level="application" />
     <orderEntry type="library" name="jsrsasign" level="application" />
     <orderEntry type="library" name="@supabase" level="application" />
+    <orderEntry type="library" name="@supabase/supabase-js" level="application" />
   </component>
 </module>
