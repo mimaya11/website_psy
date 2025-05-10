@@ -1,10 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Психологи проекта</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="stylesPsychologists.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
+
+    <!-- Подключаем jsrsasign для валидации токена -->
+    <script src="https://cdn.jsdelivr.net/npm/jsrsasign@10.6.0/lib/jsrsasign-all-min.js"></script>
+
+    <!-- Подключаем UMD-версию библиотеки Supabase -->
+    <script src="./node_modules/@supabase/supabase-js/dist/umd/supabase.js"></script>
+
+    <!-- Основной скрипт приложения -->
+    <script src="psychologists.js" defer></script>
 </head>
 <body>
-$END$
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html" target="_blank">Главная</a></li>
+            <li><a href="psychologists.html" target="_blank">Наши психологи</a></li>
+            <li id="authButtons">
+                <a href="registration.html" id="regLink" target="_blank">Регистрация</a>
+                <a href="login.html" id="loginLink" target="_blank">Вход</a>
+            </li>
+            <li id="logoutContainer"></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section id="myName">
+        <h1>Психологи проекта</h1>
+        <h2>излечат душу</h2>
+    </section>
+</main>
+
+<!-- Контейнер для карточек психологов -->
+<div class="container" id="cardsContainer"></div>
+<button id="loadMore">Показать еще</button>
+
+<!-- Модальное окно для показа деталей психолога -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <img id="modalPhoto" src="" alt="Фото">
+        <h2 id="modalName"></h2>
+        <p id="modalExperience"></p>
+        <p id="modalDescription"></p>
+    </div>
+</div>
+
+<!-- Новое модальное окно для записи на прием -->
+<div class="modal" id="appointment-modal" style="display: none;">
+    <div class="modal-content">
+        <span class="close" id="appointment-close">&times;</span>
+        <h2>Запись на прием</h2>
+        <p id="appointment-psychologist"></p>
+        <form id="appointment-form">
+            <label for="appointment-date">Дата:</label>
+            <input type="date" id="appointment-date" name="date" required>
+            <br>
+            <label for="appointment-time">Время:</label>
+            <input type="time" id="appointment-time" name="time" required>
+            <br>
+            <button type="submit">Записаться</button>
+        </form>
+    </div>
+</div>
+
+<!-- Скрипт для проверки токена и управления авторизацией -->
+<script>
+    window.addEventListener("load", function () {
+        const token = localStorage.getItem("token");
+        const authButtons = document.getElementById("authButtons");
+        const logoutContainer = document.getElementById("logoutContainer");
+
+        if (!token) {
+            window.location.href = "login.html";
+            return;
+        }
+
+        try {
+            // Проверка подписи токена (секретный ключ должен совпадать с серверным)
+            const isValid = KJUR.jws.JWS.verify(token, "s3cr3tK3y$12345", { alg: ["HS256"] });
+            if (!isValid) {
+                throw new Error("Недействительный токен");
+            }
+            const decoded = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(token.split(".")[1]));
+            console.log("Пользователь:", decoded.login);
+
+            // Скрываем кнопки входа и регистрации
+            if (authButtons) {
+                authButtons.style.display = "none";
+            }
+
+            // Показываем кнопку выхода
+            if (logoutContainer) {
+                const logoutButton = document.createElement("button");
+                logoutButton.textContent = "Выйти";
+                logoutButton.onclick = function () {
+                    localStorage.removeItem("token");
+                    alert("Вы успешно вышли из аккаунта!");
+                    window.location.href = "login.html";
+                };
+                logoutContainer.appendChild(logoutButton);
+            }
+
+            // Сохраняем user_id, если он содержится в decoded.sub (или другом поле)
+            // Сохраняем user_id: если decoded.sub существует, используем его, иначе — другой уникальный параметр, например, decoded.login
+            if (decoded.sub) {
+                localStorage.setItem("user_id", decoded.sub);
+            } else if (decoded.login) {
+                localStorage.setItem("user_id", decoded.login);
+            } else {
+                console.error("Не удалось определить уникальный идентификатор пользователя");
+            }
+        } catch (error) {
+            console.error("Ошибка при проверке токена:", error);
+            localStorage.removeItem("token");
+            alert("Срок действия токена истёк. Пожалуйста, войдите заново.");
+            window.location.href = "login.html";
+        }
+    });
+</script>
 </body>
 </html>

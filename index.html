@@ -1,10 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>МойПсихолог</title>
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet"> <!-- Подключаем библиотеку jsonwebtoken -->
+    <script src="https://cdn.jsdelivr.net/npm/jsrsasign@10.6.0/lib/jsrsasign-all-min.js"></script>
 </head>
 <body>
-$END$
+<header>
+</header>
+<script>
+    window.onload = function () {
+        const token = localStorage.getItem("token");
+        const welcomeMessage = document.getElementById("welcomeMessage");
+        const authButtons = document.getElementById("authButtons");
+        const logoutContainer = document.getElementById("logoutContainer");
+    if (!token) {
+        alert('Пожалуйста, войдите в систему.');
+        window.location.href = "login.html";
+    } else {
+        try {
+            const isValid = KJUR.jws.JWS.verify(token, "s3cr3tK3y$12345", { alg: ["HS256"] });
+            if (isValid) {
+                const decoded = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(token.split(".")[1]));
+                console.log("Пользователь:", decoded.login);
+                welcomeMessage.style.display = "block"; // Показываем сообщение
+                welcomeMessage.textContent = `Добро пожаловать, ${decoded.login}!`; // Персонализируем
+            } else {
+                throw new Error("Недействительный токен");
+            }
+        } catch (error) {
+            console.error("Ошибка при проверке токена:", error);
+            localStorage.removeItem("token");
+            alert("Срок действия токена истёк. Пожалуйста, войдите заново.");
+            window.location.href = "login.html";
+        }
+    }
+};
+</script>
+<header>
+    <nav>
+        <ul>
+            <li><a href="#myName">Главная</a></li>
+            <li><a href="psychologists.html" target="_blank">Наши психологи</a></li>
+            <li id="authButtons">
+                <a href="registration.html" id="regLink" target="_blank">Регистрация</a>
+                <a href="login.html" id="loginLink" target="_blank">Вход</a>
+            </li>
+            <li id="logoutContainer"></li>
+        </ul>
+    </nav>
+</header>
+<div id="welcomeMessage" style="color: #95815f; display: none;">Вход выполнен успешно!</div>
+<main>
+    <section id="myName">
+        <h1>Мой дневник эмоций</h1>
+        <h2>первая помощь в самоанализе</h2>
+    </section>
+    <section id="descripTitle">
+        <h1>О проекте</h1>
+    </section>
+    <section id="descrip">
+        <p>Мы считаем, что психологическая помощь должна быть доступной<br>Наша платформа - это:</p>
+        <ul>
+            <li>комфортная, безопасная среда</li>
+            <li>ежедневные упражнения для отслеживания своего ментального состояния</li>
+            <li>эффективные онлайн-сессии с любым из тысячи<br>професиональных психологов</li>
+            <li>большое, дружное сообщество</li>
+        </ul>
+    </section>
+</main>
+<script>
+    window.onload = function () {
+        const token = localStorage.getItem("token");
+        const welcomeMessage = document.getElementById("welcomeMessage");
+        const authButtons = document.getElementById("authButtons");
+        const logoutContainer = document.getElementById("logoutContainer");
+        if (!token) {
+            alert('Пожалуйста, войдите в систему.');
+            window.location.href = "login.html";
+        } else {
+            try {
+                console.log("Токен перед проверкой:", token); // Логирование токена
+                const isValid = KJUR.jws.JWS.verify(token, "s3cr3tK3y$12345", { alg: ["HS256"] });
+                if (!isValid) {
+                    throw new Error("Недействительный токен");
+                }
+                const decoded = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(token.split(".")[1]));
+                console.log("Пользователь:", decoded.login);
+                welcomeMessage.style.display = "block";
+                welcomeMessage.textContent = `Добро пожаловать, ${decoded.login}!`;
+                // Скрываем кнопки входа и регистрации
+                if (authButtons) {
+                    authButtons.style.display = "none";
+                }
+
+                // Показываем кнопку выхода
+                if (logoutContainer) {
+                    const logoutButton = document.createElement("button");
+                    logoutButton.textContent = "Выйти";
+                    logoutButton.onclick = function() {
+                        localStorage.removeItem("token");
+                        alert("Вы успешно вышли из аккаунта!");
+                        window.location.href = "login.html";
+                    };
+                    logoutContainer.appendChild(logoutButton);
+                }
+            } catch (error) {
+                console.error("Ошибка при проверке токена:", error);
+                localStorage.removeItem("token");
+                alert("Срок действия токена истёк. Пожалуйста, войдите заново.");
+                window.location.href = "login.html";
+            }
+        }
+    };
+</script>
 </body>
+<footer>
+    <p>&#xA9 2025 МойДневник</p>
+</footer>
 </html>

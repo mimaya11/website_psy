@@ -1,0 +1,195 @@
+body{
+    padding-top: 70px;
+    margin: 0;
+    font-family: Verdana, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f8f4e2;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #fcbc14;
+    font-size: 18px;
+}
+
+a:hover {
+    font-size: 16px;
+}
+
+
+h1, h2, h3 {
+    margin: 0;
+    font-weight: bold;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: #ccb387;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0
+}
+
+nav li {
+    margin-right: 35px;
+    text-decoration: none;
+}
+
+nav a {
+    font-family: 'Vollkorn';
+    font-size: 20px;
+    color: #000000;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+nav a:hover {
+    color: #fdda7f;
+}
+
+#myName {
+    position: relative; /* Убедитесь, что родительский элемент имеет относительное позиционирование */
+    background-color: #f8f4e2; /* Цвет фона */
+    height: 150px; /* Убедитесь, что высота блока достаточна для отображения изображения */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #333;
+    overflow: hidden; /* Скрыть все, что выходит за пределы блока */
+}
+
+#myName::before {
+    content: ""; /* Создает пустой контент */
+    position: absolute; /* Абсолютное позиционирование */
+    top: 0; /* Начало от верхней границы */
+    left: 0; /* Начало от левой границы */
+    right: 0; /* Конец до правой границы */
+    bottom: 0; /* Конец до нижней границы */
+    background-image: url('stars.png'); /* Путь к вашему изображению */
+    background-size: cover; /* Растянуть изображение, чтобы оно полностью заполнило блок */
+    background-repeat: no-repeat; /* Не повторять изображение */
+    background-position: center; /* Центрировать изображение */
+    opacity: 0.5; /* Устанавливает прозрачность на 50% */
+    z-index: 0; /* Убедитесь, что наложение находится ниже контента */
+
+}
+
+#myName h1 {
+    font-family: 'Caveat';
+    font-weight: 400;
+    font-size: 90px;
+    color: #000;
+    margin-bottom:-40px;
+    margin-top: 0px;
+    margin-left: 30px;
+
+}
+
+#myName h2 {
+    font-family: 'Poiret One';
+    font-weight: bold;
+    font-size: 30px;
+    color: #95815f;
+    margin-bottom: 10px;
+    margin-left: -150px;
+    margin-top: -10px;
+}
+
+#descripTitle {
+    text-align: center;
+    background-color: #fdda7f;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px #fcbc14;
+}
+#descripTitle h1 {
+    font-family: 'Caveat';
+    font-weight: 400;
+    font-size: 60px;
+    color: #95815f;
+}
+
+label {
+    display: inline-block;
+    width: 4em;
+    padding-top: 1.5em;
+    font-family: "Cambria Math";
+    font-size: 20px;
+    font-weight: bold;
+    color: #ce9a10;
+    margin-left: 50px;
+}
+
+input {
+    display: inline-block;
+    width: 15em;
+    height: 2em;
+    top: -3em;
+}
+
+button {
+    display: inline-block;
+    background-color: #fdda7f;
+    font-family: 'Caveat';
+    font-size: 26px;
+    font-weight: bold;
+    color: #95815f;
+    width: 9em;
+    height: 1.4em;
+    margin-left: 80px;
+    margin-top: 35px;
+    border-color: #ccb387;
+    box-shadow: 3px 3px #fcbc14;
+    border: none;
+}
+
+button:hover {
+    width: 8.9em;
+    height: 1.4em;
+    font-size: 24px;
+    box-shadow: 2px 2px #fcbc14;
+    cursor: pointer;
+}
+
+p {
+    display: inline-block;
+    font-family: "Cambria Math";
+    font-size: 18px;
+    color: #000000;
+    margin-left: 20px;
+}
+
+footer{
+    background-color: #95815f92;
+    text-align: right;
+    box-shadow: 0 4px 8px #fcbc14;
+    height: 40px;
+}
+
+footer p {
+    display: block;
+    font-family: 'Caveat';
+    font-size: 24px;
+    margin-right: 50px;
+}
