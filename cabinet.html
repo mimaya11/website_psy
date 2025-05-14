@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <title>Личный кабинет</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesCab.css">
 
-    <!-- Подключаем библиотеку Supabase через CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js" defer></script>
-
-    <!-- Подключаем jsrsasign для работы с JWT -->
     <script src="https://cdn.jsdelivr.net/npm/jsrsasign@10.6.0/lib/jsrsasign-all-min.js" defer></script>
 </head>
 <body>
@@ -27,12 +25,12 @@
     <section id="appointments-section">
         <h2>Ваши записи к психологу</h2>
         <div id="appointments-list">
-            <!-- Здесь будут выводиться записи -->
+
         </div>
     </section>
 </main>
 
-<!-- Inline-скрипт, обернутый в DOMContentLoaded для гарантии загрузки всех defer-скриптов -->
+
 <script>
     window.addEventListener("DOMContentLoaded", async function() {
         // Инициализация клиента Supabase
