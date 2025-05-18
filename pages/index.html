@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>МойПсихолог</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
     <!-- Подключаем библиотеку jsrsasign для работы с JWT -->
@@ -30,8 +30,8 @@
 
 <main>
     <section id="myName">
-        <h1>Мой дневник эмоций</h1>
-        <h2>первая помощь в самоанализе</h2>
+        <h1>Мой Психолог</h1>
+        <h2>сервис подбора специалистов</h2>
     </section>
     <section id="descripTitle">
         <h1>О проекте</h1>
@@ -40,16 +40,11 @@
         <p>Мы считаем, что психологическая помощь должна быть доступной<br>Наша платформа - это:</p>
         <ul>
             <li>комфортная, безопасная среда</li>
-            <li>ежедневные упражнения для отслеживания своего ментального состояния</li>
             <li>эффективные онлайн-сессии с любым из тысячи<br>профессиональных психологов</li>
             <li>большое, дружное сообщество</li>
         </ul>
     </section>
 </main>
-
-<footer>
-    <p>&#xA9 2025 МойДневник</p>
-</footer>
 
 <!-- Объединённый скрипт для проверки токена и настройки интерфейса -->
 <script>
@@ -86,7 +81,13 @@
             // Добавляем кнопку "Выйти"
             if (logoutContainer) {
                 const logoutButton = document.createElement("button");
-                logoutButton.textContent = "Выйти";
+                logoutButton.textContent = "ВЫЙТИ";
+                logoutButton.style.backgroundColor = '#fdda7f';
+                logoutButton.style.border = "none";
+                logoutButton.style.width = "200px";
+                logoutButton.style.height = "30px";
+                logoutButton.style.fontSize = "15px";
+                logoutButton.style.fontFamily = 'Vollcorn';
                 logoutButton.onclick = function() {
                     localStorage.removeItem("token");
                     alert("Вы успешно вышли из аккаунта!");
@@ -105,4 +106,7 @@
     });
 </script>
 </body>
+<footer>
+    <p>&#xA9 2025 МойДневник</p>
+</footer>
 </html>

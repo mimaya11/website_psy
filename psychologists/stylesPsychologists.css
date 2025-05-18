@@ -74,6 +74,8 @@ nav a:hover {
     overflow: hidden; /* Скрыть все, что выходит за пределы блока */
 }
 
+
+
 #myName::before {
     content: ""; /* Создает пустой контент */
     position: absolute; /* Абсолютное позиционирование */
@@ -81,7 +83,7 @@ nav a:hover {
     left: 0; /* Начало от левой границы */
     right: 0; /* Конец до правой границы */
     bottom: 0; /* Конец до нижней границы */
-    background-image: url('stars.png'); /* Путь к вашему изображению */
+    background-image: url('../stars.png'); /* Путь к вашему изображению */
     background-size: cover; /* Растянуть изображение, чтобы оно полностью заполнило блок */
     background-repeat: no-repeat; /* Не повторять изображение */
     background-position: center; /* Центрировать изображение */
@@ -142,17 +144,6 @@ nav a:hover {
     font-weight: bold;
 }
 
-footer{
-    background-color: #95815f92;
-    text-align: right;
-    box-shadow: 0 4px 8px #fcbc14;
-}
-
-footer p {
-    font-family: 'Caveat';
-    font-size: 24px;
-    margin-right: 50px;
-}
 
 
 .container {
@@ -224,6 +215,17 @@ p {
     margin-top: 0px;
     text-align: right;
 }
+
+.psychologist-photo {
+    /* Ограничиваем максимальную ширину изображения */
+    max-width: 270px;  /* или можете выбрать другое значение по вкусу */
+    width: 100%;       /* изображение будет адаптивным */
+    height: auto;      /* высота вычисляется автоматически, чтобы сохранить пропорции */
+    object-fit: cover; /* если нужно обрезать изображение, чтобы заполнить блок */
+    display: block;    /* устраняет лишние пробелы вокруг картинки */
+    margin: 0 auto;    /* по желанию: центрируем изображение */
+}
+
 
 footer{
     background-color: #95815f92;

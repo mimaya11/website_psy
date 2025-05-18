@@ -197,58 +197,52 @@ footer p {
 }
 
 
-/*#myExercises {
-    padding: 50px;
-    background-color: #83C7C9;
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #myName h1 {
+        font-size: 90px;
+    }
+
+    #myName h2 {
+        font-size: 40px;
+    }
+
+    #descrip ul {
+        font-size: 18px;
+    }
 }
 
-#myExercises h2 {
-    font-family: 'Vollkorn';
-    font-weight: 500;
-    font-size: 40px;
-    color: #000000;
-    margin-bottom: 10px;
+@media (max-width: 450px) {
+    header {
+        padding: 10px;
+    }
 
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #myName h1 {
+        font-size: 60px;
+    }
+
+    #myName h2 {
+        font-size: 20px;
+        padding: 10px;
+        margin-right: 80px;
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+
+    #descrip ul {
+        font-size: 18px;
+    }
 }
-
-#myExercises h3 {
-    font-family: 'Vollkorn';
-    font-weight: 600;
-    font-size: 24px;
-    color: #000000;
-    text-align: left;
-    margin-bottom: 10px;
-}
-
-#myExercises p {
-    font-family: 'Caveat';
-    font-size: 40px;
-    color: #333333;
-    margin-top: 10px;
-}
-
-#Form1 {
-    margin-top: 20px;
-    text-align: left; /* Выравнивание текста в форме
-}
-
-#Form1 div {
-    font-family: 'Vollkorn';
-    font-size: 20px;
-    margin-bottom: 15px; /* Отступ между элементами формы
-}
-
-#Form1 button {
-    font-family: 'Vollkorn';
-    font-size: 20px;
-    color: #333;
-    background-color: #fbe288;
-}
-
-#userInput {
-    font-family: 'Vollkorn';
-    width: 100%; /* Ширина текстового поля
-    padding: 10px; /* Отступ внутри текстового поля
-    border: 1px solid #ccc; /* Граница текстового поля
-    border-radius: 4px; /* Закругление углов
-} */

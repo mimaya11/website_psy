@@ -86,7 +86,7 @@ nav a:hover {
     left: 0; /* Начало от левой границы */
     right: 0; /* Конец до правой границы */
     bottom: 0; /* Конец до нижней границы */
-    background-image: url('stars.png'); /* Путь к вашему изображению */
+    background-image: url('../stars.png'); /* Путь к вашему изображению */
     background-size: cover; /* Растянуть изображение, чтобы оно полностью заполнило блок */
     background-repeat: no-repeat; /* Не повторять изображение */
     background-position: center; /* Центрировать изображение */

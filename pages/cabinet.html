@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Личный кабинет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../cabinet/stylesCab.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsrsasign@10.6.0/lib/jsrsasign-all-min.js" defer></script>
+</head>
+<body>
+<header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="psychologists.html">Наши психологи</a></li>
+            <li id="authButtons">
+                <a href="registration.html" id="regLink">Регистрация</a>
+                <a href="login.html" id="loginLink">Вход</a>
+            </li>
+            <li id="logoutContainer"></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <section id="myName">
+        <h1>Личный кабинет</h1>
+    </section>
+    <section id="welcome">
+        <h1 id="welcome-message">Добро пожаловать, пользователь!</h1>
+    </section>
+    <section id="appointments-section">
+        <h2>Ваши записи к психологу:</h2>
+        <div id="appointments-list"></div>
+    </section>
+    <section id="support">
+        <h1>Для отмены записи обратитесь по номеру 8(984)297-86-86 (WA, TG)</h1>
+    </section>
+</main>
+
+
+<script>
+    window.addEventListener('DOMContentLoaded', async function () {
+        const token = localStorage.getItem("token");
+        if (!token) {
+            alert("Пожалуйста, войдите в систему.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        // Декодируем токен
+        let decoded;
+        try {
+            const isValid = KJUR.jws.JWS.verify(token, "s3cr3tK3y$12345", { alg: ["HS256"] });
+            if (!isValid) {
+                throw new Error("Недействительный токен");
+            }
+            decoded = KJUR.jws.JWS.readSafeJSONString(b64utoutf8(token.split(".")[1]));
+        } catch (error) {
+            console.error("Ошибка при проверке токена:", error);
+            localStorage.removeItem("token");
+            alert("Срок действия токена истёк. Пожалуйста, войдите заново.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        // Извлекаем идентификатор пользователя из токена
+        const userId = decoded.sub || decoded.login;
+        if (!userId) {
+            alert("Ошибка: не найден идентификатор пользователя.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        // Выводим приветственное сообщение
+        document.getElementById("welcome-message").textContent = "Добро пожаловать, " + decoded.login;
+
+        // Скрываем кнопки входа и регистрации
+        const authButtons = document.getElementById("authButtons");
+        if (authButtons) {
+            authButtons.style.display = "none";
+        }
+
+        // Добавляем кнопку "Выйти"
+        const logoutContainer = document.getElementById("logoutContainer");
+        if (logoutContainer) {
+            const logoutButton = document.createElement("button");
+            logoutButton.textContent = "ВЫЙТИ";
+            logoutButton.style.backgroundColor = '#fdda7f';
+            logoutButton.style.border = "none";
+            logoutButton.style.width = "200px";
+            logoutButton.style.height = "30px";
+            logoutButton.style.fontSize = "15px";
+            logoutButton.style.fontFamily = 'Vollcorn';
+            logoutButton.onclick = function () {
+                localStorage.removeItem("token");
+                // Если у вас раньше сохраняли user_id, можно удалить и его
+                localStorage.removeItem("user_id");
+                alert("Вы успешно вышли из аккаунта!");
+                window.location.href = "login.html";
+            };
+            logoutContainer.innerHTML = "";
+            logoutContainer.appendChild(logoutButton);
+        }
+
+        // Инициализация клиента Supabase
+        const supabaseUrl = 'https://ibqxsviroqbwriqqflyi.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlicXhzdmlyb3Fid3JpcXFmbHlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDY3NzI2NzgsImV4cCI6MjA2MjM0ODY3OH0.UniqEpeGFYn0uOSX4eq9Gqi54NxStLJ6bdniHzLSudo';
+        const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Загружаем записи пользователя из таблицы appointments
+        const { data, error } = await supabaseClient
+            .from('appointments')
+            .select('*')
+            .eq('user_id', userId);
+
+        const appointmentsList = document.getElementById("appointments-list");
+
+        if (error) {
+            console.error("Ошибка получения записей:", error);
+            appointmentsList.innerHTML = "<p>Ошибка загрузки записей.</p>";
+            return;
+        }
+
+        if (!data || data.length === 0) {
+            appointmentsList.innerHTML = "<p>Записей нет.</p>";
+            return;
+        }
+
+        data.forEach(appointment => {
+            const div = document.createElement("div");
+            div.classList.add("appointment-card");
+            div.innerHTML = `
+                <p><strong>Психолог:</strong> ${appointment.psychologist_name}</p>
+                <p><strong>Дата:</strong> ${appointment.appointment_date}</p>
+                <p><strong>Время:</strong> ${appointment.appointment_time}</p>
+            `;
+            appointmentsList.appendChild(div);
+        });
+    });
+</script>
+</body>
+<footer>
+    <p>&#xA9 2025 МойДневник</p>
+</footer>
+</html>

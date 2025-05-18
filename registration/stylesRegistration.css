@@ -10,7 +10,13 @@ body{
 
 a {
     text-decoration: none;
-    color: #333;
+    font-weight: bold;
+    color: #fcbc14;
+    font-size: 18px;
+}
+
+a:hover {
+    font-size: 16px;
 }
 
 
@@ -81,7 +87,7 @@ nav a:hover {
     left: 0; /* Начало от левой границы */
     right: 0; /* Конец до правой границы */
     bottom: 0; /* Конец до нижней границы */
-    background-image: url('stars.png'); /* Путь к вашему изображению */
+    background-image: url('../stars.png'); /* Путь к вашему изображению */
     background-size: cover; /* Растянуть изображение, чтобы оно полностью заполнило блок */
     background-repeat: no-repeat; /* Не повторять изображение */
     background-position: center; /* Центрировать изображение */
@@ -97,6 +103,8 @@ nav a:hover {
     color: #000;
     margin-bottom:-40px;
     margin-top: 0px;
+    margin-left: 30px;
+
 }
 
 #myName h2 {
@@ -104,8 +112,9 @@ nav a:hover {
     font-weight: bold;
     font-size: 30px;
     color: #95815f;
-    margin-bottom: 20px;
-    margin-left: -80px;
+    margin-bottom: 10px;
+    margin-left: -150px;
+    margin-top: -10px;
 }
 
 #descripTitle {
@@ -121,119 +130,66 @@ nav a:hover {
     color: #95815f;
 }
 
-#descrip ul {
-    list-style-type: none;
-    text-align: center;
+label {
+    display: inline-block;
+    width: 4em;
+    padding-top: 1.5em;
     font-family: "Cambria Math";
-    font-size: 24px;
+    font-size: 20px;
     font-weight: bold;
-    list-style-position: inside;
-    margin-right: 50px;
     color: #ce9a10;
-}
-#descrip li::before {
-    content: "★ ";
+    margin-left: 50px;
 }
 
-#descrip p {
-    text-align: center;
-    font-size: 24px;
-    font-family: "cambria Math";
+input {
+    display: inline-block;
+    width: 15em;
+    height: 2em;
+    top: -3em;
+}
+
+button {
+    display: inline-block;
+    background-color: #fdda7f;
+    font-family: 'Caveat';
+    font-size: 26px;
     font-weight: bold;
+    color: #95815f;
+    width: 9em;
+    height: 1.4em;
+    margin-left: 80px;
+    margin-top: 35px;
+    border-color: #ccb387;
+    box-shadow: 3px 3px #fcbc14;
+    border: none;
 }
 
-footer{
-    background-color: #95815f92;
-    text-align: right;
-    box-shadow: 0 4px 8px #fcbc14;
-}
-
-footer p {
-    font-family: 'Caveat';
+button:hover {
+    width: 8.9em;
+    height: 1.4em;
     font-size: 24px;
-    margin-right: 50px;
-}
-
-
-.container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.card {
-    border: 1px solid #95815f92;
-    padding: 15px;
+    box-shadow: 2px 2px #fcbc14;
     cursor: pointer;
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-}
-
-.modal-content {
-    background: #e0c390;
-    margin: 15% auto;
-    padding: 20px;
-    width: 70%;
-    max-width: 500px;
-}
-
-#modalPhoto {
-    max-width: 150px;
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin: 10px 0;
-}
-
-.close {
-    float: right;
-    cursor: pointer;
-    font-size: 28px;
-}
-
-h2 {
-    font-family: 'Caveat';
-    font-size: 30px;
-}
-
-h3 {
-    font-family: 'Caveat';
-    font-size: 30px;
-    color: #fcbc14;
 }
 
 p {
-    font-family: 'Poiret One';
+    display: inline-block;
+    font-family: "Cambria Math";
     font-size: 18px;
-    font-weight: bold;
-    color: #95815f;
-    margin-top: 0px;
-    text-align: right;
+    color: #000000;
+    margin-left: 20px;
 }
 
 footer{
     background-color: #95815f92;
     text-align: right;
     box-shadow: 0 4px 8px #fcbc14;
+    height: 40px;
 }
 
 footer p {
+    display: block;
     font-family: 'Caveat';
     font-size: 24px;
     margin-right: 50px;
 }
-

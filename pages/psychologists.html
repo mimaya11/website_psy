@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>Психологи проекта</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="stylesPsychologists.css">
+    <link rel="stylesheet" href="../psychologists/stylesPsychologists.css">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet">
 
     <script src="https://cdn.jsdelivr.net/npm/jsrsasign@10.6.0/lib/jsrsasign-all-min.js"></script>
-    <script src="./node_modules/@supabase/supabase-js/dist/umd/supabase.js"></script>
-    <script src="psychologists.js" defer></script>
+    <script src="../node_modules/@supabase/supabase-js/dist/umd/supabase.js"></script>
+    <script src="../psychologists/psychologists.js" defer></script>
 </head>
 <body>
 <header>
@@ -96,7 +96,13 @@
             // Показываем кнопку выхода
             if (logoutContainer) {
                 const logoutButton = document.createElement("button");
-                logoutButton.textContent = "Выйти";
+                logoutButton.textContent = "ВЫЙТИ";
+                logoutButton.style.backgroundColor = '#fdda7f';
+                logoutButton.style.border = "none";
+                logoutButton.style.width = "200px";
+                logoutButton.style.height = "30px";
+                logoutButton.style.fontSize = "15px";
+                logoutButton.style.fontFamily = 'Vollcorn';
                 logoutButton.onclick = function () {
                     localStorage.removeItem("token");
                     alert("Вы успешно вышли из аккаунта!");
