@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Пагинация: загружаем несколько карточек за раз
     let offset = 0;
-    const limit = 5;
+    const limit = 4;
     const cardsContainer = document.getElementById('cardsContainer');
     const loadMoreButton = document.getElementById('loadMore');
 

@@ -148,8 +148,8 @@ nav a:hover {
 
 .container {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(4, 1fr); /* Устанавливаем 4 колонки */
+    gap: 20px; /* Отступы между карточками */
     padding: 20px;
 }
 
@@ -226,6 +226,80 @@ p {
     margin: 0 auto;    /* по желанию: центрируем изображение */
 }
 
+.psychologist-card {
+    border: 1px solid #95815f92;
+    padding: 15px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    height: 500px; /* Установите фиксированную высоту для карточек */
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: repeat(2, 1fr); /* 2 колонки на маленьких экранах */
+    }
+    header {
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #myName h1 {
+        font-size: 90px;
+    }
+
+    #myName h2 {
+        font-size: 40px;
+    }
+
+    #descrip ul {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        grid-template-columns: 1fr; /* 1 колонка на очень маленьких экранах */
+    }
+
+    header {
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #myName h1 {
+        font-size: 40px;
+    }
+
+    #myName h2 {
+        font-size: 20px;
+        padding: 10px;
+        margin-right: 80px;
+        margin-bottom: 0;
+        white-space: nowrap;
+    }
+
+    #welcome h1 {
+        font-size: 25px;
+    }
+
+    #appointments-section {
+        font-size: 10px;
+        padding: 10px;
+    }
+
+    #appointments-list {
+        font-size: 10px;
+        padding: 10px;
+    }
+}
 
 footer{
     background-color: #95815f92;
