@@ -220,7 +220,7 @@ footer p {
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 350px) {
     header {
         padding: 10px;
     }
