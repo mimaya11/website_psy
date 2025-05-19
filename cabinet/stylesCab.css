@@ -1,4 +1,4 @@
-body{
+body {
     padding-top: 70px;
     margin: 0;
     font-family: Verdana, sans-serif;
@@ -12,7 +12,6 @@ a {
     text-decoration: none;
     color: #333;
 }
-
 
 h1, h2, h3 {
     margin: 0;
@@ -35,13 +34,13 @@ nav {
     align-items: center;
 }
 
-nav ul{
+nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 nav li {
@@ -62,32 +61,31 @@ nav a:hover {
 }
 
 #myName {
-    position: relative; /* Убедитесь, что родительский элемент имеет относительное позиционирование */
-    background-color: #f8f4e2; /* Цвет фона */
-    height: 150px; /* Убедитесь, что высота блока достаточна для отображения изображения */
+    position: relative; /* Родительский контейнер для псевдоэлемента */
+    background-color: #f8f4e2;
+    height: 150px; /* Оставляем прежнюю высоту, чтобы фон оставался как есть */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #333;
-    overflow: hidden; /* Скрыть все, что выходит за пределы блока */
+    overflow: hidden;
 }
 
 #myName::before {
-    content: ""; /* Создает пустой контент */
-    position: absolute; /* Абсолютное позиционирование */
-    top: 0; /* Начало от верхней границы */
-    left: 0; /* Начало от левой границы */
-    right: 0; /* Конец до правой границы */
-    bottom: 0; /* Конец до нижней границы */
-    background-image: url('../stars.png'); /* Путь к вашему изображению */
-    background-size: cover; /* Растянуть изображение, чтобы оно полностью заполнило блок */
-    background-repeat: no-repeat; /* Не повторять изображение */
-    background-position: center; /* Центрировать изображение */
-    opacity: 0.5; /* Устанавливает прозрачность на 50% */
-    z-index: 0; /* Убедитесь, что наложение находится ниже контента */
-
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../stars.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 0;
 }
 
 #myName h1 {
@@ -95,7 +93,7 @@ nav a:hover {
     font-weight: 400;
     font-size: 90px;
     color: #000;
-    margin-bottom:-40px;
+    margin-bottom: -40px;
     margin-top: 0px;
 }
 
@@ -107,7 +105,6 @@ nav a:hover {
     margin-bottom: 20px;
     margin-left: -80px;
 }
-
 
 #welcome {
     text-align: center;
@@ -135,6 +132,7 @@ nav a:hover {
     color: #95815f;
 }
 
+/* Медиа-запрос для экранов до 768px (например, планшеты) */
 @media (max-width: 768px) {
     header {
         padding: 10px;
@@ -146,57 +144,93 @@ nav a:hover {
     }
 
     #myName h1 {
-        font-size: 90px;
+        font-size: 90px; /* можно при необходимости подкорректировать, но здесь оставляем */
     }
 
     #myName h2 {
         font-size: 40px;
     }
 
+    /* Если есть блок #descrip, его можно скорректировать */
     #descrip ul {
         font-size: 18px;
     }
 }
 
+/* Медиа-запрос для экранов до 480px (оптимизация для iPhone 14) */
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    /* Не изменяем высоту #myName, чтобы фон оставался неизменным */
+    #myName h1 {
+        font-size: 40px;
+        margin-bottom: -10px;
+    }
+    #myName h2 {
+        font-size: 18px;
+        padding: 5px;
+        margin: 0;
+        white-space: normal;
+        text-align: center;
+    }
+    #welcome h1 {
+        font-size: 25px;
+    }
+    #support h1 {
+        font-size: 16px;
+        text-align: center;
+    }
+    #appointments-section,
+    #appointments-list {
+        font-size: 12px;
+        padding: 10px;
+    }
+    footer p {
+        font-size: 18px;
+        margin-right: 20px;
+    }
+}
+
+/* Медиа-запрос для экранов до 450px */
 @media (max-width: 450px) {
     header {
         padding: 10px;
     }
-
     nav ul {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
-
     #myName h1 {
         font-size: 40px;
     }
-
     #myName h2 {
-        font-size: 20px;
+        font-size: 18px;
         padding: 10px;
-        margin-right: 80px;
+        margin-right: 0;
         margin-bottom: 0;
-        white-space: nowrap;
+        white-space: normal;
+        text-align: center;
     }
-
     #welcome h1 {
         font-size: 25px;
     }
-
-    #appointments-section {
-        font-size: 10px;
-        padding: 10px;
-    }
-
+    #appointments-section,
     #appointments-list {
-        font-size: 10px;
+        font-size: 12px;
         padding: 10px;
     }
 }
 
-
-footer{
+footer {
     background-color: #95815f92;
     text-align: right;
     box-shadow: 0 4px 8px #fcbc14;
@@ -207,4 +241,3 @@ footer p {
     font-size: 24px;
     margin-right: 50px;
 }
-

@@ -1,4 +1,4 @@
-body{
+body {
     padding-top: 70px;
     margin: 0;
     font-family: Verdana, sans-serif;
@@ -40,13 +40,13 @@ nav {
     align-items: center;
 }
 
-nav ul{
+nav ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 nav li {
@@ -69,30 +69,29 @@ nav a:hover {
 #myName {
     position: relative; /* Убедитесь, что родительский элемент имеет относительное позиционирование */
     background-color: #f8f4e2; /* Цвет фона */
-    height: 150px; /* Убедитесь, что высота блока достаточна для отображения изображения */
+    height: 150px; /* Высота блока для отображения изображения */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     color: #333;
-    overflow: hidden; /* Скрыть все, что выходит за пределы блока */
+    overflow: hidden; /* Скрыть всё, что выходит за пределы блока */
 }
 
 #myName::before {
     content: ""; /* Создает пустой контент */
     position: absolute; /* Абсолютное позиционирование */
-    top: 0; /* Начало от верхней границы */
-    left: 0; /* Начало от левой границы */
-    right: 0; /* Конец до правой границы */
-    bottom: 0; /* Конец до нижней границы */
-    background-image: url('../stars.png'); /* Путь к вашему изображению */
-    background-size: cover; /* Растянуть изображение, чтобы оно полностью заполнило блок */
-    background-repeat: no-repeat; /* Не повторять изображение */
-    background-position: center; /* Центрировать изображение */
-    opacity: 0.5; /* Устанавливает прозрачность на 50% */
-    z-index: 0; /* Убедитесь, что наложение находится ниже контента */
-
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../stars.png'); /* Путь к изображению */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.5;
+    z-index: 0;
 }
 
 #myName h1 {
@@ -100,7 +99,7 @@ nav a:hover {
     font-weight: 400;
     font-size: 90px;
     color: #000;
-    margin-bottom:-10px;
+    margin-bottom: -10px;
     margin-top: 0px;
     margin-left: 30px;
 }
@@ -111,7 +110,7 @@ nav a:hover {
     font-size: 30px;
     color: #95815f;
     margin-bottom: 10px;
-    margin-left: 370px;
+    margin-left: 370px; /* Большой отступ для десктопной версии */
     margin-top: -30px;
 }
 
@@ -176,8 +175,7 @@ p {
     margin-left: 20px;
 }
 
-
-footer{
+footer {
     background-color: #95815f92;
     text-align: right;
     box-shadow: 0 4px 8px #fcbc14;
@@ -189,4 +187,71 @@ footer p {
     font-family: 'Caveat';
     font-size: 24px;
     margin-right: 50px;
+}
+
+/* Медиа-запрос для экранов до 768px */
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+}
+
+/* Медиа-запрос для экранов до 480px (оптимизация для iPhone 14) */
+@media (max-width: 480px) {
+    header {
+        padding: 10px;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    /* Секция #myName оставляем прежней, чтобы фон не сбивался */
+    #myName {
+        padding: 0 10px;
+    }
+    #myName h1 {
+        font-size: 50px;
+        margin-left: 0; /* Выравниваем заголовок по центру */
+    }
+    #myName h2 {
+        font-size: 20px;
+        margin-left: 0;  /* Убираем большое отступ слева */
+        margin-top: -10px;
+        text-align: center;
+        padding: 0 5px;
+    }
+    /* Корректировка размеров элементов формы */
+    label {
+        margin-left: 10px;
+        font-size: 16px;
+        width: auto;
+    }
+    input {
+        width: 80%;
+    }
+    button {
+        width: 30%;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+    p {
+        margin-left: 10px;
+        font-size: 16px;
+    }
+    footer p {
+        margin-right: 10px;
+        font-size: 16px;
+    }
 }

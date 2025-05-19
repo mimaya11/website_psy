@@ -41,7 +41,7 @@ nav ul{
     align-items: center;
     list-style: none;
     margin: 0;
-    padding: 0
+    padding: 0;
 }
 
 nav li {
@@ -74,8 +74,6 @@ nav a:hover {
     overflow: hidden; /* Скрыть все, что выходит за пределы блока */
 }
 
-
-
 #myName::before {
     content: ""; /* Создает пустой контент */
     position: absolute; /* Абсолютное позиционирование */
@@ -89,7 +87,6 @@ nav a:hover {
     background-position: center; /* Центрировать изображение */
     opacity: 0.5; /* Устанавливает прозрачность на 50% */
     z-index: 0; /* Убедитесь, что наложение находится ниже контента */
-
 }
 
 #myName h1 {
@@ -97,7 +94,7 @@ nav a:hover {
     font-weight: 400;
     font-size: 90px;
     color: #000;
-    margin-bottom:-40px;
+    margin-bottom: -40px;
     margin-top: 0px;
 }
 
@@ -143,8 +140,6 @@ nav a:hover {
     font-family: "cambria Math";
     font-weight: bold;
 }
-
-
 
 .container {
     display: grid;
@@ -218,12 +213,12 @@ p {
 
 .psychologist-photo {
     /* Ограничиваем максимальную ширину изображения */
-    max-width: 270px;  /* или можете выбрать другое значение по вкусу */
-    width: 100%;       /* изображение будет адаптивным */
-    height: auto;      /* высота вычисляется автоматически, чтобы сохранить пропорции */
-    object-fit: cover; /* если нужно обрезать изображение, чтобы заполнить блок */
-    display: block;    /* устраняет лишние пробелы вокруг картинки */
-    margin: 0 auto;    /* по желанию: центрируем изображение */
+    max-width: 270px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
 }
 
 .psychologist-card {
@@ -234,6 +229,9 @@ p {
     height: 500px; /* Установите фиксированную высоту для карточек */
 }
 
+/* ===== МЕДИА-ЗАПРОСЫ ===== */
+
+/* Для экранов до 768px (например, планшеты) */
 @media (max-width: 768px) {
     .container {
         grid-template-columns: repeat(2, 1fr); /* 2 колонки на маленьких экранах */
@@ -241,63 +239,77 @@ p {
     header {
         padding: 10px;
     }
-
     nav ul {
         flex-direction: column;
         align-items: flex-start;
     }
-
+    nav li {
+        margin-right: 0;
+        margin-bottom: 10px;
+    }
+    /* Корректировка секции #myName */
     #myName h1 {
-        font-size: 90px;
+        font-size: 70px;
+        /* Сбрасываем лишние отступы, если нужно */
     }
-
     #myName h2 {
-        font-size: 40px;
+        font-size: 25px;
+        margin-left: 0; /* Убираем отрицательный отступ */
+        text-align: center;
     }
-
+    /* Корректировка списка описания */
     #descrip ul {
-        font-size: 18px;
+        margin-right: 10px;
+        font-size: 20px;
     }
 }
 
+/* Для экранов до 480px (оптимизация для iPhone 14) */
 @media (max-width: 480px) {
     .container {
         grid-template-columns: 1fr; /* 1 колонка на очень маленьких экранах */
     }
-
     header {
         padding: 10px;
     }
-
     nav ul {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
     }
-
+    nav li {
+        margin: 0 0 10px 0;
+    }
+    #myName {
+        padding: 0 5px;
+    }
     #myName h1 {
-        font-size: 40px;
+        font-size: 50px;
     }
-
     #myName h2 {
         font-size: 20px;
-        padding: 10px;
-        margin-right: 80px;
+        margin-left: 0;  /* Убираем отрицательный отступ */
         margin-bottom: 0;
-        white-space: nowrap;
+        text-align: center;
+        white-space: normal;
+        padding: 5px;
     }
-
-    #welcome h1 {
-        font-size: 25px;
+    /* Корректировка списка описания */
+    #descrip ul {
+        margin-right: 5px;
+        font-size: 18px;
     }
-
-    #appointments-section {
-        font-size: 10px;
-        padding: 10px;
+    /* Корректировка типографики */
+    p {
+        font-size: 16px;
+        text-align: center;
+        margin-left: 5px;
     }
-
-    #appointments-list {
-        font-size: 10px;
-        padding: 10px;
+    .psychologist-photo {
+        max-width: 100%;
+    }
+    footer p {
+        font-size: 16px;
+        margin-right: 5px;
     }
 }
 
@@ -312,4 +324,3 @@ footer p {
     font-size: 24px;
     margin-right: 50px;
 }
-
