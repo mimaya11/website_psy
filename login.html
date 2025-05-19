@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Регистрация</title>
+    <title>Вход</title>
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="../registration/stylesRegistration.css">
+    <link rel="stylesheet" href="login/stylesLogin.css">
     <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poiret+One&display=swap" rel="stylesheet"> <!-- Подключаем библиотеку jsonwebtoken -->
     <script src="https://cdn.jsdelivr.net/npm/jsrsasign@10.6.0/lib/jsrsasign-all-min.js"></script>
@@ -13,27 +13,27 @@
 <header>
     <nav>
         <ul>
-            <li><a href="../index.html" target="_blank">Главная</a></li>
-            <li><a href="../psychologists/psychologists.html" target="_blank">Наши психологи</a></li>
+            <li><a href="index.html" target="_blank">Главная</a></li>
+            <li><a href="psychologists/psychologists.html" target="_blank">Наши психологи</a></li>
             <li><a href="registration.html" target="_blank">Регистрация</a></li>
             <li><a href="login.html" target="_blank">Вход</a></li>
         </ul>
     </nav>
 </header>
 <section id="myName">
-    <h1>Регистрация</h1>
-    <h2>начни свой путь</h2>
+    <h1>Авторизация</h1>
+    <h2>с возвращением!</h2>
 </section>
 <section id="descripTitle">
-    <h1>Заполните все поля, чтобы создать новый аккаунт!</h1>
+    <h1>Заполните все поля, чтобы войти в свой аккаунт!</h1>
 </section>
-<form id="registrationForm">
-    <div> <label>Логин</label> <input type="text" id="regLogin" required> </div>
-    <div> <label>Пароль</label> <input type="password" id="regPassword" required> </div>
-    <button type="submit">Зарегистрироваться</button>
-    <p id="regMessage" style="color: red;"></p>
+<p>Нет аккаунта? <a href="registration.html">Создайте его за минуту</a>.</p>
+<form id="loginForm">
+    <div> <label>Логин</label> <input type="text" id="login" required/> </div>
+    <div> <label>Пароль</label> <input type="password" id="password" required/> </div>
+    <button type="submit">Войти</button> <p id="errorMessage" style="color: red;"></p>
 </form>
-<script src="../registration/registr.js"></script>
+<script src="login/login.js"></script>
 </body>
 <footer>
     <p>&#xA9 2025 МойДневник</p>
