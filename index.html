@@ -15,10 +15,10 @@
         <ul>
             <li><a href="#myName">Главная</a></li>
             <li><a href="psychologists/psychologists.html" target="_blank">Наши психологи</a></li>
-            <li><a href="cabinet.html" target="_blank">Личный кабинет</a></li>
+            <li><a href="pages/cabinet.html" target="_blank">Личный кабинет</a></li>
             <li id="authButtons">
-                <a href="registration.html" id="regLink" target="_blank">Регистрация</a>
-                <a href="login.html" id="loginLink" target="_blank">Вход</a>
+                <a href="pages/registration.html" id="regLink" target="_blank">Регистрация</a>
+                <a href="pages/login.html" id="loginLink" target="_blank">Вход</a>
             </li>
             <li id="logoutContainer"></li>
         </ul>
@@ -55,7 +55,7 @@
 
         if (!token) {
             alert('Пожалуйста, войдите в систему.');
-            //window.location.href = "login.html";
+            window.location.href = "login.html";
             return;
         }
 
